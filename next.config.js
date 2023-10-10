@@ -1,8 +1,14 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  experimental: {
-    appDir: true,
+  reactStrictMode: true,
+  images: {
+    domains: ['arweave.net', 'image-cache-service-z3w7d7dnea-ew.a.run.app'],
   },
-};
+  webpack: (config, { buildId, dev, isServer, defaultLoaders, webpack }) => {
+    config.resolve.fallback = { fs: false }
 
-module.exports = nextConfig;
+    return config
+  },
+}
+
+module.exports = nextConfig
